@@ -28,6 +28,11 @@ jobs:
           source $HOME/.cargo/env
           cargo install --version ${MDBOOK_VERSION} mdbook
 
+      - name: Install mdbook-mermaid plugin
+        run: |
+          source $HOME/.cargo/env
+          cargo install mdbook-mermaid
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
