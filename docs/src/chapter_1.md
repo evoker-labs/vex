@@ -11,20 +11,6 @@ This document defines the system architecture for TOC, aligned with ISO 25010 qu
 - **Security**
 - **Functional Suitability**
 
-
-```mermaid
-graph TD
-    A[Frontend] -->|HTTPS| B[Ticket Canister]
-    A -->|Internet Identity| C[Auth Canister]
-    B --> D[Analytics Canister]
-    B --> E[Reputation Canister]
-    C --> F[RBAC Canister]
-    D --> G[Stable Memory]
-    E --> G
-    F --> G
-```
-
-
 ---
 
 #### **2. Architectural Goals**
