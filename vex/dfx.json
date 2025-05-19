@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "vex_backend": {
+      "candid": "src/vex_backend/vex_backend.did",
+      "package": "vex_backend",
+      "type": "rust"
+    },
+    "vex_frontend": {
+      "dependencies": [
+        "vex_backend"
+      ],
+      "source": [
+        "src/vex_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "vex_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/vex_backend"
+]
+resolver = "2"
