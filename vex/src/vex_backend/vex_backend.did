@@ -1,16 +1,16 @@
+type Result = variant { Ok : User; Err : text };
+type Result_1 = variant { Ok; Err : text };
 type User = record {
-  id: nat64;
-  name: text;
-  email: text;
-  created_at: nat64;
+  id : nat64;
+  name : text;
+  created_at : nat64;
+  email : text;
 };
-
 service : {
-  create_user: (text, text) -> (opt User);
-  get_user: (nat64) -> (opt User) query;
-  get_all_users: () -> (vec User) query;
-  update_user: (nat64, opt text, opt text) -> (variant { ok: User; err: text });
-  delete_user: (nat64) -> (variant { ok; err: text });
-  heart_beat: (text) -> (text) query;
-  "__get_candid_interface_tmp_hack": () -> (text) query;
-};
+  create_user : (text, text) -> (Result);
+  delete_user : (nat64) -> (Result_1);
+  get_all_users : () -> (vec User) query;
+  get_user : (nat64) -> (opt User) query;
+  heart_beat : (text) -> (text) query;
+  update_user : (nat64, opt text, opt text) -> (Result);
+}
