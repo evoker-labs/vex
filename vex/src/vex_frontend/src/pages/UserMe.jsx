@@ -107,7 +107,7 @@ function UserMe() {
             <label>Created At:</label>
             <span>{new Date(Number(user.created_at) / 1000000).toLocaleString()}</span>
           </div>
-          <button onClick={() => setEditing(true)}>Edit Profile</button>
+          <button onClick={() => setEditing(true)} className="primary-button">Edit Profile</button>
         </div>
       ) : (
         <form className="edit-profile-form" onSubmit={handleUpdateProfile}>
@@ -134,8 +134,8 @@ function UserMe() {
             />
           </div>
           <div className="form-actions">
-            <button type="submit">Save Changes</button>
-            <button type="button" onClick={() => setEditing(false)}>Cancel</button>
+            <button type="submit" className="primary-button">Save Changes</button>
+            <button type="button" onClick={() => setEditing(false)} className="delete-button">Cancel</button>
           </div>
         </form>
       )}

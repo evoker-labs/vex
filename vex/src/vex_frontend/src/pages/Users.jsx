@@ -79,7 +79,7 @@ function Users() {
               onChange={(e) => setNewUser({...newUser, email: e.target.value})}
             />
           </div>
-          <button type="submit">Create User</button>
+          <button type="submit" className="primary-button">Create User</button>
         </form>
       </div>
       
@@ -108,7 +108,7 @@ function Users() {
                   <td>{user.email}</td>
                   <td>{new Date(Number(user.created_at) / 1000000).toLocaleString()}</td>
                   <td>
-                    <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                    <button onClick={() => handleDeleteUser(user.id)} className="delete-button">Delete</button>
                   </td>
                 </tr>
               ))}
