@@ -7,11 +7,13 @@ import NewTickets from './pages/NewTickets';
 import Officials from './pages/Officials';
 import UserMe from './pages/UserMe';
 import Hello from './pages/Hello';
+import TicketDetail from './pages/TicketDetail';
+import Layout from './components/Layout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Layout />,
     children: [
       {
         path: 'dashboard',
@@ -26,8 +28,12 @@ const router = createBrowserRouter([
         element: <Tickets />
       },
       {
-        path: 'new-tickets',
+        path: 'new-ticket',
         element: <NewTickets />
+      },
+      {
+        path: 'ticket/:id',
+        element: <TicketDetail />
       },
       {
         path: 'officials',
