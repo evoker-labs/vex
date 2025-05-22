@@ -1,5 +1,16 @@
+type User = record {
+  id: nat64;
+  name: text;
+  email: text;
+  created_at: nat64;
+};
+
 service : {
-  get : (nat) -> (opt nat) query;
-  heart_beat : (text) -> (text) query;
-  insert : (nat, nat) -> (opt nat);
-}
+  create_user: (text, text) -> (opt User);
+  get_user: (nat64) -> (opt User) query;
+  get_all_users: () -> (vec User) query;
+  update_user: (nat64, opt text, opt text) -> (variant { ok: User; err: text });
+  delete_user: (nat64) -> (variant { ok; err: text });
+  heart_beat: (text) -> (text) query;
+  "__get_candid_interface_tmp_hack": () -> (text) query;
+};

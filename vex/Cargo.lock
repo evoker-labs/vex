@@ -690,6 +690,7 @@ dependencies = [
  "ic-cdk-macros 0.18.2",
  "ic-cdk-timers",
  "ic-stable-structures",
+ "serde",
 ]
 
 [[package]]
