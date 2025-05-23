@@ -131,6 +131,9 @@ input:focus, select:focus, textarea:focus {
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar-nav {

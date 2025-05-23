@@ -13,8 +13,12 @@ function Layout() {
         onMouseLeave={() => setExpanded(false)}
       >
         <div className="logo">
-          <div>TICKET</div>
-          <div>LEAD</div>
+          <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M150 30L60 180H40L130 30H150Z" fill="#7e57c2"/>
+            <path d="M40 70H80L100 30H60L40 70Z" fill="#7e57c2"/>
+            <path d="M30 90H70L90 50H50L30 90Z" fill="#7e57c2"/>
+            <path d="M20 110H60L80 70H40L20 110Z" fill="#7e57c2"/>
+          </svg>
         </div>
         <nav className="sidebar-nav">
           <ul>
