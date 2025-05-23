@@ -4,4 +4,5 @@
 - [ ] Implement ticket
 
 # ui: 
-- [ ] improve css is torto LOL
+- [x] improve css is torto LOL
+- [ ] integrate ticket
