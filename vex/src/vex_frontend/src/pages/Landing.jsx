@@ -256,11 +256,10 @@ function Landing() {
               </div>
               <h1 className="animate-title">TICKET<br/>SYSTEM</h1>
               <p className="contact-info animate-fade-in">
-                Follow me <a href="https://twitter.com/aymunsaifdar" target="_blank" rel="noopener noreferrer">@aymunsaifdar</a> for more designs.<br/>
-                Reach out to me via email <a href="mailto:aymunsaif.18@gmail.com">aymunsaif.18@gmail.com</a>
+                Experience a modern ticket management system with advanced security and analytics.
               </p>
               <div className="hero-cta animate-on-scroll">
-                <button onClick={() => scrollToSection('features')} className="hero-button">Explore Features</button>
+                <Link to="/dashboard" className="hero-button">Go to Dashboard</Link>
               </div>
             </div>
           </div>
@@ -273,6 +272,14 @@ function Landing() {
             />
           </div>
         </section>
+
+        <div className="scroll-arrow-container" onClick={() => scrollToSection('features')}>
+          <div className="scroll-arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
 
         <section id="features" className="features">
           <h2 className={`section-title animate-on-scroll ${activeSection === 'features' ? 'active' : ''}`}>Features</h2>
@@ -347,7 +354,7 @@ function Landing() {
 
         <section id="collaborators" className="collaborators">
           <h2 className={`section-title animate-on-scroll ${activeSection === 'collaborators' ? 'active' : ''}`}>Our Team</h2>
-          <div className="collaborators-grid">
+          <div className="collaborators-grid team-inline">
             <div className="collaborator-card animate-on-scroll">
               <div className="collaborator-avatar">
                 <img 
