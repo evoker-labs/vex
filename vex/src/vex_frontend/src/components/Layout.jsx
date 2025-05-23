@@ -1,13 +1,51 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function Layout() {
   const [expanded, setExpanded] = useState(false);
+  const sidebarRef = useRef(null);
+  
+  // Fix Chrome rendering issues
+  useEffect(() => {
+    // Force browser to recognize the sidebar
+    if (sidebarRef.current) {
+      sidebarRef.current.style.display = 'flex';
+      
+      // Chrome needs a reflow to properly render the sidebar
+      setTimeout(() => {
+        if (sidebarRef.current) {
+          const oldHeight = sidebarRef.current.style.height;
+          sidebarRef.current.style.height = '100.1%';
+          
+          setTimeout(() => {
+            if (sidebarRef.current) {
+              sidebarRef.current.style.height = oldHeight || '100%';
+            }
+          }, 0);
+        }
+      }, 50);
+    }
+  }, []);
+  
+  // Add event handler to handle clicks outside sidebar when expanded on mobile
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (expanded && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [expanded]);
   
   return (
     <div className="app-container">
       {/* Left Sidebar */}
       <div 
+        ref={sidebarRef}
         className={`sidebar ${expanded ? 'expanded' : ''}`} 
         onMouseEnter={() => setExpanded(true)}
         onMouseLeave={() => setExpanded(false)}

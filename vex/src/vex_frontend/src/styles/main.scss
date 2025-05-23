@@ -110,13 +110,18 @@ input:focus, select:focus, textarea:focus {
   padding: 20px 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
-  transition: width 0.3s ease;
+  z-index: 1000;
+  transition: width 0.3s ease, transform 0.3s ease;
   overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(0);
+  will-change: transform, width;
+  backface-visibility: hidden;
 }
 
 .sidebar.expanded {
@@ -216,9 +221,13 @@ input:focus, select:focus, textarea:focus {
   background-color: #f9f9f9;
   margin-left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   overflow-y: auto;
   transition: margin-left 0.3s ease, width 0.3s ease;
+  position: relative;
+  z-index: 1;
+  will-change: margin-left, width;
 }
 
 .sidebar.expanded ~ .main-content {
@@ -731,4 +740,63 @@ input:focus, select:focus, textarea:focus {
   padding: 10px;
   border-radius: var(--border-radius);
   margin-bottom: 20px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: none;
+    z-index: 1001;
+    visibility: visible;
+    left: 0;
+    backface-visibility: hidden;
+  }
+  
+  .sidebar.expanded {
+    transform: translateX(0);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .sidebar.expanded ~ .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* Chrome-specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .sidebar {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+  }
+  
+  .main-content {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .app-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 } 
