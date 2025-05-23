@@ -28,31 +28,37 @@ function Landing() {
       // Check which section is in view for highlight
       const sections = ['hero', 'features', 'how-it-works', 'collaborators', 'documentation'];
       
-      // Find which section is most visible
-      let maxVisibility = 0;
-      let mostVisibleSection = activeSection;
+      // Find which section is closest to the viewport top
+      let closestSection = null;
+      let closestDistance = Infinity;
       
       sections.forEach(section => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
+          const absDist = Math.abs(rect.top - 80); // 80px is approx. the nav height
           
-          // Calculate how much of the section is visible in the viewport
-          const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-          const visibilityRatio = visibleHeight > 0 ? visibleHeight / rect.height : 0;
-          
-          if (visibilityRatio > maxVisibility) {
-            maxVisibility = visibilityRatio;
-            mostVisibleSection = section;
+          if (absDist < closestDistance) {
+            closestDistance = absDist;
+            closestSection = section;
           }
         }
       });
       
-      if (mostVisibleSection !== activeSection) {
-        setActiveSection(mostVisibleSection);
+      if (closestSection && closestSection !== activeSection) {
+        setActiveSection(closestSection);
+        
+        // Highlight the section title
+        document.querySelectorAll('.section-title').forEach(title => {
+          if (title.closest('section') && title.closest('section').id === closestSection) {
+            title.classList.add('active');
+          } else {
+            title.classList.remove('active');
+          }
+        });
       }
       
-      // Auto-reveal elements when they come into view - lower threshold to make it happen sooner
+      // Auto-reveal elements when they come into view
       elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
@@ -194,6 +200,18 @@ function Landing() {
     setImgError(prev => ({...prev, [img]: true}));
   };
 
+  // Update footer buttons to show active state
+  useEffect(() => {
+    // Update active classes on footer buttons based on current section
+    document.querySelectorAll('.footer-scroll-button').forEach(button => {
+      if (button.getAttribute('data-section') === activeSection) {
+        button.classList.add('active');
+      } else {
+        button.classList.remove('active');
+      }
+    });
+  }, [activeSection]);
+
   if (!pageLoaded) {
     return <div className="loading">Loading...</div>;
   }
@@ -202,7 +220,7 @@ function Landing() {
     <div className="landing-page">
       {/* Floating Logo and Navigation */}
       <div className="floating-logo-container">
-        <div className={`floating-logo ${scrollPosition > 50 ? 'visible' : ''}`}>
+        <div className="floating-logo">
           <div className="logo-icon" onClick={() => scrollToSection('hero')}>
             <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M150 30L60 180H40L130 30H150Z" fill="#7e57c2"/>
@@ -271,15 +289,16 @@ function Landing() {
               onError={() => handleImgError('laptop')}
             />
           </div>
-        </section>
-
-        <div className="scroll-arrow-container" onClick={() => scrollToSection('features')}>
-          <div className="scroll-arrow">
-            <span></span>
-            <span></span>
-            <span></span>
+          
+          {/* Scroll indicator moved inside hero section */}
+          <div id="scroll-indicator" onClick={() => scrollToSection('features')}>
+            <div className="arrows">
+              <div className="arrow"></div>
+              <div className="arrow"></div>
+              <div className="arrow"></div>
+            </div>
           </div>
-        </div>
+        </section>
 
         <section id="features" className="features">
           <h2 className={`section-title animate-on-scroll ${activeSection === 'features' ? 'active' : ''}`}>Features</h2>
@@ -436,14 +455,14 @@ function Landing() {
               <div className="footer-column">
                 <h4>Resources</h4>
                 <Link to="/docs" id="documentation-link">Documentation</Link>
-                <button onClick={() => scrollToSection('features')} className="footer-scroll-button">Features</button>
-                <button onClick={() => scrollToSection('how-it-works')} className="footer-scroll-button">Architecture</button>
+                <button onClick={() => scrollToSection('features')} className="footer-scroll-button" data-section="features">Features</button>
+                <button onClick={() => scrollToSection('how-it-works')} className="footer-scroll-button" data-section="how-it-works">Architecture</button>
                 <Link to="/api">API Reference</Link>
               </div>
               <div className="footer-column">
                 <h4>Company</h4>
-                <button onClick={() => scrollToSection('hero')} className="footer-scroll-button">About</button>
-                <button onClick={() => scrollToSection('collaborators')} className="footer-scroll-button">Team</button>
+                <button onClick={() => scrollToSection('hero')} className="footer-scroll-button" data-section="hero">About</button>
+                <button onClick={() => scrollToSection('collaborators')} className="footer-scroll-button" data-section="collaborators">Team</button>
                 <a href="mailto:aymunsaif.18@gmail.com">Contact Us</a>
                 <Link to="/privacy">Privacy Policy</Link>
               </div>
