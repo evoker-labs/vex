@@ -42,7 +42,7 @@ function Layout() {
   }, [expanded]);
   
   return (
-    <div className="app-container">
+    <div className={`app-container ${expanded ? 'sidebar-expanded' : ''}`}>
       {/* Left Sidebar */}
       <div 
         ref={sidebarRef}

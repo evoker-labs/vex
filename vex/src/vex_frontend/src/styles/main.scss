@@ -38,7 +38,7 @@ html, body {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--text-color);
-  background-color: black !important;
+  background-color: white !important;
   line-height: 1.5;
   font-size: 16px;
 }
@@ -100,6 +100,12 @@ input:focus, select:focus, textarea:focus {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  padding-left: var(--sidebar-width);
+  transition: padding-left 0.3s ease;
+}
+
+.app-container.sidebar-expanded {
+  padding-left: var(--sidebar-expanded-width);
 }
 
 /* Sidebar */
@@ -218,21 +224,21 @@ input:focus, select:focus, textarea:focus {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #f9f9f9;
-  margin-left: var(--sidebar-width);
-  width: calc(100% - var(--sidebar-width));
+  background-color: white;
+  width: 100%;
   height: 100%;
   min-height: 100vh;
   overflow-y: auto;
-  transition: margin-left 0.3s ease, width 0.3s ease;
   position: relative;
   z-index: 1;
   will-change: margin-left, width;
+  padding-left: 20px;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
 }
 
 .sidebar.expanded ~ .main-content {
-  margin-left: var(--sidebar-expanded-width);
-  width: calc(100% - var(--sidebar-expanded-width));
+  /* This selector is no longer needed as we're using app-container padding */
 }
 
 /* Header */
@@ -306,7 +312,7 @@ input:focus, select:focus, textarea:focus {
 /* Page Content */
 .page-content {
   flex: 1;
-  padding: 20px;
+  padding: 20px 20px 20px 40px;
 }
 
 /* Common Components */
@@ -431,7 +437,7 @@ input:focus, select:focus, textarea:focus {
 
 /* Tickets Page */
 .tickets-page {
-  padding: 10px;
+  padding: 20px;
 }
 
 .tickets-header {
@@ -602,7 +608,7 @@ input:focus, select:focus, textarea:focus {
 
 /* New Ticket Page */
 .new-ticket-page {
-  padding: 10px;
+  padding: 20px;
 }
 
 .new-ticket-content {
@@ -627,7 +633,7 @@ input:focus, select:focus, textarea:focus {
 
 /* Ticket Detail Page */
 .ticket-detail-page {
-  padding: 10px;
+  padding: 20px;
 }
 
 .ticket-response {
@@ -664,7 +670,7 @@ input:focus, select:focus, textarea:focus {
 
 /* Users and UserMe pages */
 .users, .user-me {
-  padding: 10px;
+  padding: 20px;
 }
 
 .create-user-form {
@@ -680,11 +686,14 @@ input:focus, select:focus, textarea:focus {
   border-radius: var(--border-radius);
   padding: 20px;
   box-shadow: var(--box-shadow);
+  width: 100%;
+  overflow-x: auto;
 }
 
 .users-list table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 }
 
 .users-list th, .users-list td {
@@ -696,6 +705,9 @@ input:focus, select:focus, textarea:focus {
 .users-list th {
   font-weight: 500;
   color: var(--text-lighter);
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
 }
 
 .profile-details {
@@ -744,6 +756,10 @@ input:focus, select:focus, textarea:focus {
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
+  .app-container {
+    padding-left: 0;
+  }
+
   .sidebar {
     transform: translateX(-100%);
     box-shadow: none;
@@ -759,13 +775,8 @@ input:focus, select:focus, textarea:focus {
   }
   
   .main-content {
-    margin-left: 0;
     width: 100%;
-  }
-  
-  .sidebar.expanded ~ .main-content {
-    margin-left: 0;
-    width: 100%;
+    padding-left: 0;
   }
 }
 
@@ -804,7 +815,7 @@ input:focus, select:focus, textarea:focus {
 /* Additional styles for landing page */
 body.landing-page-active {
   overflow: auto !important;
-  background-color: black !important;
+  background-color: white !important;
 }
 
 /* Important: Ensure no background inheritance for landing page sections */
@@ -828,4 +839,38 @@ body.landing-page-active {
     background-color: #7e57c2 !important;
     background: #7e57c2 !important;
   }
+}
+
+/* Additional page-specific styles */
+.dashboard,
+.tickets-page,
+.new-ticket-page,
+.ticket-detail-page,
+.users,
+.user-me {
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+/* Ensure tables don't overflow their containers */
+table {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Force proper layout for all content */
+.main-content {
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* All page containers need proper padding */
+.dashboard,
+.tickets-page,
+.new-ticket-page,
+.ticket-detail-page,
+.users,
+.user-me {
+  padding: 20px !important;
 } 
