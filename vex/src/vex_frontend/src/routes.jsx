@@ -1,4 +1,5 @@
-import { createBrowserRouter } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { createBrowserRouter, RouterProvider, useRouteError, isRouteErrorResponse, Link } from 'react-router-dom';
 import App from './App';
 import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
@@ -10,47 +11,104 @@ import Hello from './pages/Hello';
 import TicketDetail from './pages/TicketDetail';
 import Layout from './components/Layout';
 import Landing from './pages/Landing';
+import ErrorBoundary from './components/ErrorBoundary';
+
+// Error Boundary component for routes
+function RouteErrorBoundary() {
+  const error = useRouteError();
+  console.error("Route error:", error);
+  
+  let errorMessage = "An unexpected error occurred!";
+  let errorDetails = null;
+  
+  if (isRouteErrorResponse(error)) {
+    errorMessage = `${error.status} ${error.statusText}`;
+    errorDetails = error.data?.message || error.data;
+  } else if (error instanceof Error) {
+    errorMessage = error.message;
+    errorDetails = error.stack;
+  }
+  
+  return (
+    <div className="error-boundary">
+      <h1>Oops!</h1>
+      <h2>{errorMessage}</h2>
+      {errorDetails && <pre>{errorDetails}</pre>}
+      <Link to="/" className="back-link">Back to Home</Link>
+    </div>
+  );
+}
+
+// Simple fallback component for loading states
+const LoadingFallback = () => (
+  <div className="loading-fallback" style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    fontSize: '18px',
+    color: '#666'
+  }}>
+    <div>
+      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+        <svg width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <style>{`.spinner{transform-origin:center;animation:spin 1s linear infinite}@keyframes spin{100%{transform:rotate(360deg)}}`}</style>
+          <circle className="spinner" cx="12" cy="12" r="10" fill="none" stroke="#7e57c2" strokeWidth="2" />
+        </svg>
+      </div>
+      <div>Loading...</div>
+    </div>
+  </div>
+);
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Landing />
-  },
-  {
-    path: '/',
     element: <Layout />,
+    errorElement: <RouteErrorBoundary />,
     children: [
       {
+        index: true,
+        element: <Landing />,
+      },
+      {
         path: 'dashboard',
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: 'users',
-        element: <Users />
+        element: <Users />,
       },
       {
         path: 'tickets',
-        element: <Tickets />
+        element: <Tickets />,
       },
       {
         path: 'new-ticket',
-        element: <NewTickets />
+        element: <NewTickets />,
       },
       {
         path: 'ticket/:id',
-        element: <TicketDetail />
+        element: (
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingFallback />}>
+              <TicketDetail />
+            </Suspense>
+          </ErrorBoundary>
+        ),
+        errorElement: <RouteErrorBoundary />,
       },
       {
         path: 'officials',
-        element: <Officials />
+        element: <Officials />,
       },
       {
         path: 'user-me',
-        element: <UserMe />
+        element: <UserMe />,
       },
       {
         path: 'hello',
-        element: <Hello />
+        element: <Hello />,
       },
       {
         path: 'docs',
@@ -75,4 +133,14 @@ const router = createBrowserRouter([
   }
 ]);
 
-export default router; 
+function Routes() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <ErrorBoundary>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
+    </Suspense>
+  );
+}
+
+export default Routes; 

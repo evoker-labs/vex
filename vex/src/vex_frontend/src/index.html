@@ -5,27 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VEX Ticket System</title>
   <style>
-    /* Force background colors */
+    /* Critical styling */
     html, body {
       margin: 0;
       padding: 0;
-      background-color: black !important;
+      background-color: #ffffff !important;
+      height: 100%;
+      overflow: auto;
     }
     
-    /* Critical style to ensure hero split works */
-    #root .hero-right,
-    .hero-right {
-      background-color: #7e57c2 !important;
-      background: #7e57c2 !important;
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100vh;
+    #root {
+      min-height: 100vh;
+      display: block;
+    }
+    
+    /* Error message styling */
+    #error-container {
+      display: none;
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(244, 67, 54, 0.9);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      z-index: 9999;
+      font-family: sans-serif;
     }
   </style>
 </head>
 <body>
   <div id="root"></div>
+  <div id="error-container"></div>
+  <script>
+    // Basic error handling
+    window.addEventListener('error', function(e) {
+      console.error('Global error:', e.error || e.message);
+      const errorContainer = document.getElementById('error-container');
+      if (errorContainer) {
+        errorContainer.style.display = 'block';
+        errorContainer.textContent = 'An error occurred. Please check the console.';
+      }
+    });
+  </script>
 </body>
 </html> 
