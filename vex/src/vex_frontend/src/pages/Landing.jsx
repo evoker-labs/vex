@@ -465,7 +465,7 @@ function Landing() {
             <div className="collaborator-card">
               <div className="collaborator-avatar">
                 <img 
-                  src="https://avatars.githubusercontent.com/u/70056727?v=4" 
+                  src="/images/coutin.jpg" 
                   alt="Rafael Coutinho"
                   onError={() => handleImgError('avatar1')}
                 />
@@ -481,32 +481,16 @@ function Landing() {
             <div className="collaborator-card">
               <div className="collaborator-avatar">
                 <img 
-                  src={imgError.avatar2 ? "https://via.placeholder.com/100/7e57c2/ffffff?text=MR" : "/images/avatar2.svg"} 
-                  alt="Maya Rodriguez"
+                  src="/images/mister.jpg" 
+                  alt="Mister Clayton"
                   onError={() => handleImgError('avatar2')}
                 />
               </div>
-              <h3>Maya Rodriguez</h3>
-              <p>UI/UX Designer</p>
-              <p className="bio">Expert in creating intuitive interfaces with modern, clean design focused on usability and accessibility.</p>
-              <div className="social-links">
-                <a href="#" className="social-link">GitHub</a>
-                <a href="#" className="social-link">LinkedIn</a>
-              </div>
-            </div>
-            <div className="collaborator-card">
-              <div className="collaborator-avatar">
-                <img 
-                  src={imgError.avatar3 ? "https://via.placeholder.com/100/7e57c2/ffffff?text=SP" : "/images/avatar3.svg"} 
-                  alt="Sam Patel"
-                  onError={() => handleImgError('avatar3')}
-                />
-              </div>
-              <h3>Sam Patel</h3>
+              <h3>Mister Clayton</h3>
               <p>Backend Engineer</p>
-              <p className="bio">Specializes in high-performance distributed systems using Motoko and Rust for performance-critical modules.</p>
+              <p className="bio">Specializes in distributed systems architecture and blockchain development with expertise in Rust and ICP.</p>
               <div className="social-links">
-                <a href="#" className="social-link">GitHub</a>
+                <a href="https://github.com/misterclayt0n" target="_blank" rel="noopener noreferrer" className="social-link">GitHub</a>
                 <a href="#" className="social-link">LinkedIn</a>
               </div>
             </div>

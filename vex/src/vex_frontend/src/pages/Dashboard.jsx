@@ -32,9 +32,11 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [tickets, setTickets] = useState([]);
+  const [filteredTickets, setFilteredTickets] = useState([]);
   const [users, setUsers] = useState([]);
   const [ticketStats, setTicketStats] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
+  const [ticketFilter, setTicketFilter] = useState(null); // 'open', 'all', etc.
   const [expandedTicket, setExpandedTicket] = useState(null);
   const navigate = useNavigate();
 
@@ -91,6 +93,7 @@ function Dashboard() {
         };
         
         setTickets(processedTickets);
+        setFilteredTickets(processedTickets);
         setUsers(processedUsers);
         setTicketStats(processedStats);
         setError(null);
@@ -104,6 +107,41 @@ function Dashboard() {
     
     fetchData();
   }, []);
+
+  // Apply filters when ticket filter changes
+  useEffect(() => {
+    if (!tickets.length) return;
+    
+    if (ticketFilter === 'open') {
+      // Log status values to help debug
+      console.log("Filtering for open tickets...");
+      tickets.forEach(ticket => {
+        console.log(`Ticket #${ticket.id} status:`, ticket.status, Object.keys(ticket.status)[0]);
+      });
+      
+      // Fix the filter to correctly identify open tickets with case-insensitive comparison
+      const openTickets = tickets.filter(ticket => {
+        const statusKey = Object.keys(ticket.status)[0];
+        return statusKey.toLowerCase() === 'open';
+      });
+      
+      console.log(`Found ${openTickets.length} open tickets out of ${tickets.length} total`);
+      setFilteredTickets(openTickets);
+    } else {
+      setFilteredTickets(tickets);
+    }
+  }, [ticketFilter, tickets]);
+
+  // Add a debug effect to understand ticket structure
+  useEffect(() => {
+    if (tickets.length > 0) {
+      console.log("Ticket statuses:", tickets.map(ticket => ({
+        id: ticket.id,
+        status: Object.keys(ticket.status)[0],
+        statusObj: ticket.status
+      })));
+    }
+  }, [tickets]);
 
   // Helper to convert nanoseconds timestamp to readable date
   const formatTimestamp = (nanoseconds) => {
@@ -124,6 +162,33 @@ function Dashboard() {
   const getUserName = (userId) => {
     const user = users.find(u => u.id === userId);
     return user ? user.name : 'Unknown';
+  };
+
+  // Handle clicking on a stats card
+  const handleCardClick = (cardType) => {
+    if (cardType === 'tickets') {
+      setActiveTab('tickets');
+      setTicketFilter(null);
+    } else if (cardType === 'open-tickets') {
+      setActiveTab('tickets');
+      setTicketFilter('open');
+    } else if (cardType === 'users') {
+      setActiveTab('users');
+    }
+  };
+
+  // Toggle expanded ticket details
+  const toggleTicketDetails = (ticketId) => {
+    if (expandedTicket === ticketId) {
+      setExpandedTicket(null);
+    } else {
+      setExpandedTicket(ticketId);
+    }
+  };
+
+  // Navigate to ticket detail page
+  const goToTicket = (ticketId) => {
+    navigate(`/app/ticket/${ticketId}`);
   };
 
   // Process data for status chart
@@ -259,27 +324,17 @@ function Dashboard() {
     };
   };
 
-  // Handle clicking on a stats card
-  const handleCardClick = (cardType) => {
-    if (cardType === 'tickets' || cardType === 'open-tickets') {
-      setActiveTab('tickets');
-    } else if (cardType === 'users') {
-      setActiveTab('users');
-    }
-  };
-
-  // Toggle expanded ticket details
-  const toggleTicketDetails = (ticketId) => {
-    if (expandedTicket === ticketId) {
-      setExpandedTicket(null);
-    } else {
-      setExpandedTicket(ticketId);
-    }
-  };
-
-  // Navigate to ticket detail page
-  const goToTicket = (ticketId) => {
-    navigate(`/app/ticket/${ticketId}`);
+  // Get the count of open tickets
+  const getOpenTicketsCount = () => {
+    if (!tickets.length) return 0;
+    
+    // Count open tickets correctly with case-insensitive comparison
+    const openCount = tickets.filter(ticket => {
+      const statusKey = Object.keys(ticket.status)[0];
+      return statusKey.toLowerCase() === 'open';
+    }).length;
+    
+    return openCount;
   };
 
   // Render loading state
@@ -312,6 +367,7 @@ function Dashboard() {
   const typeChartData = getTypeChartData();
   const priorityChartData = getPriorityChartData();
   const activityTimelineData = getActivityTimelineData();
+  const openTicketsCount = getOpenTicketsCount();
 
   return (
     <div className="dashboard">
@@ -327,7 +383,7 @@ function Dashboard() {
           </button>
           <button 
             className={activeTab === 'tickets' ? 'active' : ''} 
-            onClick={() => setActiveTab('tickets')}
+            onClick={() => { setActiveTab('tickets'); setTicketFilter(null); }}
           >
             Tickets
           </button>
@@ -364,7 +420,7 @@ function Dashboard() {
           </div>
           <div className="stat-content">
             <h3>Open Tickets</h3>
-            <p className="stat-value">{ticketStats?.by_status.open || 0}</p>
+            <p className="stat-value">{openTicketsCount}</p>
           </div>
         </div>
         <div className="stat-card" onClick={() => handleCardClick('users')}>
@@ -516,7 +572,17 @@ function Dashboard() {
 
       {activeTab === 'tickets' && (
         <div className="tickets-table-container">
-          <h3>Tickets</h3>
+          <h3>
+            {ticketFilter === 'open' ? 'Open Tickets' : 'All Tickets'}
+            {ticketFilter === 'open' && (
+              <button 
+                className="filter-clear-btn"
+                onClick={() => setTicketFilter(null)}
+              >
+                View All
+              </button>
+            )}
+          </h3>
           <div className="table-container">
             <table className="data-table">
               <thead>
@@ -532,8 +598,8 @@ function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {tickets.length > 0 ? (
-                  tickets.map(ticket => (
+                {filteredTickets.length > 0 ? (
+                  filteredTickets.map(ticket => (
                     <tr 
                       key={ticket.id}
                       className="ticket-row clickable"
@@ -555,7 +621,9 @@ function Dashboard() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="8" className="no-data">No tickets available</td>
+                    <td colSpan="8" className="no-data">
+                      {ticketFilter === 'open' ? 'No open tickets available' : 'No tickets available'}
+                    </td>
                   </tr>
                 )}
               </tbody>

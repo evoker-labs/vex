@@ -223,6 +223,9 @@
       font-weight: 600;
       position: relative;
       padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       
       &:after {
         content: '';
@@ -233,6 +236,29 @@
         height: 3px;
         background-color: var(--primary-color);
         border-radius: 3px;
+      }
+      
+      .filter-clear-btn {
+        background-color: #f2f2f2;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #555;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-left: 12px;
+        margin-bottom: 6px;
+        
+        &:hover {
+          background-color: #e8e8e8;
+          color: var(--primary-color);
+        }
+        
+        &:active {
+          transform: translateY(1px);
+        }
       }
     }
     
