@@ -9,14 +9,21 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #f5f5f5;
   color: #333;
-  font-size: 1.5rem;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
 }
 
 img {
-  max-width: 50vw;
-  max-height: 25vw;
-  display: block;
-  margin: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 form {
@@ -24,7 +31,6 @@ form {
   justify-content: center;
   gap: 0.5em;
   flex-flow: row wrap;
-  max-width: 40vw;
   margin: auto;
   align-items: baseline;
 }
@@ -32,7 +38,6 @@ form {
 button[type="submit"] {
   padding: 5px 20px;
   margin: 10px auto;
-  float: right;
 }
 
 #greeting {
@@ -49,12 +54,6 @@ button[type="submit"] {
   display: none;
 }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 header {
   background-color: #282c34;
   padding: 1rem;
@@ -66,47 +65,6 @@ header {
   img {
     height: 40px;
   }
-}
-
-.main-content {
-  display: flex;
-  flex: 1;
-}
-
-.sidebar {
-  width: 250px;
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  
-  ul {
-    list-style: none;
-    
-    li {
-      margin-bottom: 0.5rem;
-      
-      a {
-        color: white;
-        text-decoration: none;
-        display: block;
-        padding: 0.5rem;
-        border-radius: 4px;
-        
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        &.active {
-          background-color: #4a90e2;
-        }
-      }
-    }
-  }
-}
-
-.content {
-  flex: 1;
-  padding: 2rem;
 }
 
 h1 {

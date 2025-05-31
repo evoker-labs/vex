@@ -64,12 +64,17 @@ const LoadingFallback = () => (
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <Landing />,
+    errorElement: <RouteErrorBoundary />
+  },
+  {
+    path: '/app',
     element: <Layout />,
     errorElement: <RouteErrorBoundary />,
     children: [
       {
         index: true,
-        element: <Landing />,
+        element: <Dashboard />
       },
       {
         path: 'dashboard',
@@ -128,6 +133,52 @@ const router = createBrowserRouter([
             <p>Explore the VEX API for custom integrations and extensions.</p>
           </div>
         </div>
+      }
+    ]
+  },
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <RouteErrorBoundary />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
+      },
+      {
+        path: 'tickets',
+        element: <Tickets />,
+      },
+      {
+        path: 'new-ticket',
+        element: <NewTickets />,
+      },
+      {
+        path: 'ticket/:id',
+        element: (
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingFallback />}>
+              <TicketDetail />
+            </Suspense>
+          </ErrorBoundary>
+        ),
+        errorElement: <RouteErrorBoundary />,
+      },
+      {
+        path: 'officials',
+        element: <Officials />,
+      },
+      {
+        path: 'user-me',
+        element: <UserMe />,
+      },
+      {
+        path: 'hello',
+        element: <Hello />,
       }
     ]
   }
