@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Routes from './routes';
 import './index.scss';
-import './styles/main.scss';
+import './styles'; // Import all styles from the index file
 
 // Function to handle errors during rendering
 const renderApp = () => {

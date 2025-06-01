@@ -1,40 +1,81 @@
+# VEX - Internet Computer Support & Ticketing System
 
+VEX is a powerful library and API designed to seamlessly integrate support and ticketing systems with Internet Computer Protocol (ICP) dapps and traditional Web2 applications.
 
-# VEX: Ticket-Oriented CRM on the Internet Computer
+## Features
 
-**VEX** is a modular, decentralized Customer Relationship Management system built on the Internet Computer Protocol (ICP). It leverages a canister-based architecture to deliver secure, scalable, and maintainable CRM workflows such as ticket handling, reputation tracking, and analytics.
+- Complete ticketing system with user management
+- Seamless integration with both ICP dapps and traditional web applications
+- Secure, decentralized storage of support data
+- Customizable workflows for ticket resolution
+- Real-time updates and notifications
 
-## Overview
+## Quick Setup
 
-This project is designed with a focus on ISO 25010 software quality characteristics:
+### Prerequisites
 
-* **Functional Suitability**: Covers essential CRM workflows including ticket lifecycle, reputation, and analytics.
-* **Performance Efficiency**: Achieves sub-second response times via parallel canister execution.
-* **Security**: End-to-end encryption for private tickets and authentication using Internet Identity.
-* **Maintainability**: Modular design with versioned canisters enabling safe and independent upgrades.
+```bash
+# Using DFX directly
+sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
 
-### Layers
+# Or using Nix
+nix-shell https://github.com/ninegua/ic-nix/releases/latest/download/dfx-env.tar.gz
 
-1. **Presentation Layer**: A React Single Page Application (SPA) connected via ICP agent.
-2. **Application Layer**:
+# Install LLVM linker
+nix shell nixpkgs#lld
 
-   * Ticket management: state transitions (e.g., Open → Closed)
-   * Analytics engine: lightweight, rule-based insights
-3. **Data Layer**: On-chain storage using ICP's stable memory with structured persistence
+# Install Candid extractor
+cargo install candid-extractor
+```
 
-### Design Highlights
+### Local Development
 
-* **Canister Sharding**: Enables horizontal scaling of ticket data.
-* **Stateless Frontend**: Sessions are handled through Internet Identity.
-* **Lightweight Analytics**: Avoids ML-heavy computations for better cost and speed on-chain.
+```bash
+# Clone the repository
+git clone https://github.com/love4game/vex.git
+cd vex
 
+# Start the local replica
+dfx start --background --clean
 
-## DOCS
+# Deploy the backend canister
+dfx deploy vex_backend
 
+# Deploy the frontend assets
+dfx deploy vex_frontend
+```
 
-**[c0utin.github.io/vex](https://c0utin.github.io/vex/)**
+## Documentation
+
+Comprehensive documentation is available in the `/docs` directory:
+
+- Business Overview
+- Getting Started
+- Integration Guides
+- API Reference
+- Examples
+
+To build and view the documentation:
+
+```bash
+cd docs
+mdbook build
+mdbook serve --open
+```
+
+## Integration
+
+VEX can be integrated with:
+
+- Internet Computer dapps
+- Traditional web applications
+- Mobile applications via web views
+- Custom interfaces through the API
 
 ## License
 
-This project is licensed under the APACHE 2.0 License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
+## Contributing
+
+Contributions are welcome! Please check out our contributing guidelines in the documentation.

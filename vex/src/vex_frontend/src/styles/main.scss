@@ -1129,4 +1129,7 @@ table {
 .users,
 .user-me {
   padding: 20px !important;
-} 
+}
+
+/* Import page-specific styles */
+@import 'users'; 
