@@ -3,7 +3,7 @@ authors = ["c0utin"]
 language = "en"
 multilingual = false
 src = "src"
-title = "things"
+title = "VEX - Internet Computer Support & Ticketing System"
 
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
