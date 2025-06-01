@@ -37,6 +37,7 @@ cd vex
 
 # Start the local replica
 dfx start --background --clean
+cd vex
 
 # Deploy the backend canister
 dfx deploy vex_backend
