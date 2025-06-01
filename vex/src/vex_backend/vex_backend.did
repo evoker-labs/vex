@@ -1,3 +1,68 @@
+type Result = variant { Ok : Ticket; Err : text };
+type Result_1 = variant { Ok : User; Err : text };
+type Result_2 = variant { Ok; Err : text };
+type Result_3 = variant { Ok : vec TicketMessage; Err : text };
+type StatusCounts = record {
+  resolved : nat64;
+  closed : nat64;
+  in_progress : nat64;
+  open : nat64;
+  on_hold : nat64;
+};
+type Ticket = record {
+  id : nat64;
+  status : TicketStatus;
+  title : text;
+  updated_at : nat64;
+  messages : vec TicketMessage;
+  description : text;
+  created_at : nat64;
+  created_by : nat64;
+  ticket_type : TicketType;
+  assignee_id : opt nat64;
+  priority : nat8;
+  resolved_at : opt nat64;
+};
+type TicketMessage = record {
+  id : nat64;
+  content : text;
+  created_at : nat64;
+  user_id : nat64;
+};
+type TicketStats = record {
+  total : nat64;
+  by_status : StatusCounts;
+  by_type : vec record { text; int32 };
+  avg_resolution_time_ns : nat64;
+};
+type TicketStatus = variant { OnHold; Open; Closed; InProgress; Resolved };
+type TicketType = variant { Bug; Support; Maintenance; Other; Feature };
+type User = record {
+  id : nat64;
+  name : text;
+  created_at : nat64;
+  email : text;
+};
 service : {
-    "greet": (text) -> (text) query;
+  add_message_to_ticket : (nat64, nat64, text) -> (Result);
+  assign_ticket : (nat64, opt nat64) -> (Result);
+  create_ticket : (text, text, TicketType, nat64, nat8) -> (Result);
+  create_user : (text, text) -> (Result_1);
+  delete_ticket : (nat64) -> (Result_2);
+  delete_user : (nat64) -> (Result_2);
+  get_all_tickets : () -> (vec Ticket) query;
+  get_all_users : () -> (vec User) query;
+  get_ticket : (nat64) -> (opt Ticket) query;
+  get_ticket_messages : (nat64) -> (Result_3) query;
+  get_ticket_stats : () -> (TicketStats) query;
+  get_tickets_by_assignee : (nat64) -> (vec Ticket) query;
+  get_tickets_by_status : (TicketStatus) -> (vec Ticket) query;
+  get_tickets_by_type : (TicketType) -> (vec Ticket) query;
+  get_user : (nat64) -> (opt User) query;
+  heart_beat : (text) -> (text) query;
+  update_ticket : (nat64, opt text, opt text, opt TicketType, opt nat8) -> (
+      Result,
+    );
+  update_ticket_status : (nat64, TicketStatus) -> (Result);
+  update_user : (nat64, opt text, opt text) -> (Result_1);
 }
