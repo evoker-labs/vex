@@ -3,18 +3,17 @@
 - [x] fix get all, return id
 - [x] Implement ticket
 - [ ] APi key service (open chat like)
+- [ ] public API
 - [ ] integration with web 2
 - [ ] AI agent
 - [ ] wallet integration
 - [ ] pay collaborators
-- [ ] integrate with other canister
 - [ ] manage collaborators
 - [ ] improve data-structures
 - [ ] images in chat?
 - [ ] kyc
 - [ ] payouts
 - [ ] roles (owner,admin,collaborator)
-- [ ] network contestment
 - [ ] model to define priority
 
 # ui: 
@@ -23,3 +22,6 @@
 - [ ] 3d lp
 - [ ] kanban
 - [ ] more analitycs
+- [ ] Chat
+- [ ] Chatbot
+- [ ] swagger api web2
