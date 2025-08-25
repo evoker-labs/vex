@@ -2,6 +2,8 @@
 
 VEX is a powerful library and API designed to seamlessly integrate support and ticketing systems with Internet Computer Protocol (ICP) dapps and traditional Web2 applications.
 
+[PITCH DECK](https://www.canva.com/design/DAGqXkgdhbI/jG5JkgOkUZt1dUG3mCa_pQ/edit)
+
 ## Features
 
 - Complete ticketing system with user management
