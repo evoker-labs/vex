@@ -76,7 +76,3 @@ VEX can be integrated with:
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contributing
-
-Contributions are welcome! Please check out our contributing guidelines in the documentation.
