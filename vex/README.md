@@ -1,151 +1,60 @@
-![VEX Platform](../docs/vex-banner.png)
+## Quick Setup
 
-# VEX - Decentralized Business Review Platform
+### Prerequisites
 
-**Your Voice, Our Chain, Their Accountability**
+```bash
+# Using DFX directly
+sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
 
-## Overview
+# Or using Nix
+nix-shell https://github.com/ninegua/ic-nix/releases/latest/download/dfx-env.tar.gz
 
-VEX is a revolutionary decentralized platform that connects companies to the blockchain ecosystem, enabling transparent business registration and community evaluation through verified customer feedback. Built on the Internet Computer Protocol (ICP), VEX addresses the critical trust gap in online business reviews.
+# Install LLVM linker
+nix shell nixpkgs#lld
 
-## Problem
+# Install Candid extractor
+cargo install candid-extractor
+```
 
-- **61% of consumers** experience unreliable apps/websites weekly
-- **44% of consumers** stop buying from companies due to lack of trust
-- Traditional review platforms suffer from fake reviews and manipulation
-- Businesses struggle with fragile code and fraud risks in the AI era
+### Local Development
 
-## Solution
+```bash
+# Clone the repository
+git clone https://github.com/love4game/vex.git
+cd vex
 
-VEX provides a blockchain-based review system that guarantees:
-- **Immutable Reviews**: Every review is permanently stored on-chain
-- **Verified Authenticity**: Real purchases verified through TLSN technology
-- **Token Incentives**: Reviewers earn rewards for valuable feedback
-- **Community Governance**: Platform decisions made by users through DAO
+# Start the local replica
+dfx start --background --clean
 
-## Market Opportunity
+# Deploy the backend canister
+dfx deploy vex_backend
 
-- **$2.53 billion** Internet Computer market capitalization
-- **61%** of consumers need reliable review platforms
-- **44%** of consumers have stopped buying due to trust issues
-- **5%** expected freemium to paid conversion rate
+# Deploy the frontend assets
+dfx deploy vex_frontend
+```
 
-## Business Model
+## Documentation
 
-### Revenue Streams
+Comprehensive documentation is available in the `/docs` directory:
 
-1. **SaaS Subscriptions**: Monthly fees for businesses accessing advanced features
-2. **Token Economics**: Value appreciation through network growth
-3. **Premium Services**: Enterprise integrations and custom solutions
+- Business Overview
+- Getting Started
+- Integration Guides
+- API Reference
+- Examples
 
-### Pricing Tiers
+To build and view the documentation:
 
-| Plan | Price | Features |
-|------|-------|----------|
-| **Basic** | Free | Business registration, receive feedback, basic trust score |
-| **Professional** | $288/month | Advanced analytics, VEX Trust Badge, API access, priority support |
-| **Enterprise** | $380/month | Dedicated support, CS data insights, custom integrations |
+```bash
+cd docs
+mdbook build
+mdbook serve --open
+```
 
-### Token Distribution
+## License
 
-- **40%** Community Rewards
-- **20%** DAO Treasury  
-- **15%** Development
-- **15%** Team (vested)
-- **10%** Marketing
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Competitive Advantage
+## Contributing
 
-| Feature | VEX | TrustPilot | ReclameAqui | Feefo |
-|---------|-----|------------|-------------|--------|
-| Blockchain Verified | Yes | No | No | No |
-| Decentralized | Yes | No | No | No |
-| Token Rewards | Yes | No | No | No |
-| DAO Governance | Yes | No | No | No |
-| TLSN Verification | Yes | No | No | No |
-| Immutable Reviews | Yes | No | No | No |
-| Community Driven | Yes | No | Partial | No |
-| Cost Effective | Yes | No | Yes | No |
-
-## Key Differentiators
-
-1. **Reward System**: Users earn tokens for providing valuable feedback
-2. **Community Validation**: The community itself validates and guarantees trust
-3. **Lower Costs**: Simple, fast transactions at lower cost than competitors
-4. **True Transparency**: All data publicly verifiable on blockchain
-
-## Target Market
-
-### Primary Customers
-- **Startups and SMEs**: Growing companies facing difficulties structuring customer feedback
-- **Digital Businesses**: E-commerce, SaaS, and online service providers
-- **Web3 Companies**: Blockchain-native businesses seeking decentralized solutions
-
-### Secondary Market
-- **Reviewers**: Digital professionals and consumers aged 18-40
-- **Token Holders**: Investors interested in governance participation
-- **Enterprise Clients**: Large organizations requiring custom trust solutions
-
-## Roadmap
-
-### Q1 2025 - Foundation
-- MVP launch with core features
-- Initial business onboarding
-- Community building
-
-### Q2 2025 - Growth
-- Platform refinement based on feedback
-- Marketing campaign launch
-- Strategic partnerships
-
-### Q3 2025 - Expansion
-- Scale infrastructure
-- International market entry
-- Enterprise features
-
-### Q4 2025 - Maturity
-- Full DAO implementation
-- Cross-chain integration
-- Global presence
-
-## Traction & Metrics
-
-- **70%** of prototype users report increased confidence
-- **60%+** user engagement rate in initial testing
-- **5%** conversion rate from free to paid expected
-- Multiple strategic partnerships in development
-
-## Team
-
-**Rafael Coutinho** - Founder & Engineer
-- Full-stack developer with blockchain expertise
-- Previous experience in decentralized systems
-
-**Davi Arantes** - Business & Engineer
-- Business strategy and technical implementation
-- Software engineering background
-
-**Anna Aragão** - Business & Sales
-- McKinsey Forward Program 2025 Graduate
-- TOP 50 Global Student Prize recipient
-- 1st Place COMEX Challenge winner
-- ABStartups Brazil Startup Mentor
-
-**Sarah** - UI/UX Designer
-- User experience and interface design
-- Platform visual identity creation
-
-
-## Technical Documentation
-
-For technical implementation details, please refer to:
-- [Technical Documentation](docs/TECHNICAL.md)
-- [API Reference](docs/API.md)
-- [Smart Contracts](docs/CONTRACTS.md)
-- [Development Guide](docs/DEVELOPMENT.md)
-
----
-
-**VEX - Building Trust in the Digital Economy**
-
-*WCHL 2025 Hackathon Participant | Built on Internet Computer Protocol*
+Contributions are welcome! Please check out our contributing guidelines in the documentation.
