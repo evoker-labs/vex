@@ -33,24 +33,6 @@ dfx deploy vex_backend
 dfx deploy vex_frontend
 ```
 
-## Documentation
-
-Comprehensive documentation is available in the `/docs` directory:
-
-- Business Overview
-- Getting Started
-- Integration Guides
-- API Reference
-- Examples
-
-To build and view the documentation:
-
-```bash
-cd docs
-mdbook build
-mdbook serve --open
-```
-
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
