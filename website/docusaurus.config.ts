@@ -72,12 +72,12 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Documentation',
         },
         {
-          href: 'pathname:///VEX-PITCH.pdf',
+          href: '/VEX-PITCH.pdf',
           label: 'Pitch Deck',
           position: 'right',
         },
@@ -122,7 +122,7 @@ const config: Config = {
           items: [
             {
               label: 'Pitch Deck',
-              href: 'pathname:///VEX-PITCH.pdf',
+              href: '/VEX-PITCH.pdf',
             },
             {
               label: 'GitHub',
