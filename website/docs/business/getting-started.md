@@ -109,8 +109,8 @@ Show your real-time reputation score to build customer confidence.
 
 ## Support Resources
 
-- [API Documentation](/docs/technical/api)
-- [Integration Examples](/docs/technical/examples)
+- [API Documentation](/technical/api)
+- [Integration Examples](/technical/examples)
 - [FAQ](#)
 - [Contact Support](mailto:support@vex.network)
 

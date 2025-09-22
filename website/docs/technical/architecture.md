@@ -193,10 +193,10 @@ const result = await vexActor.submitFeedback({
 ## Developer Resources
 
 ### Getting Started
-- [API Documentation](/docs/technical/api)
-- [SDK Reference](/docs/technical/sdk)
-- [Smart Contract Guide](/docs/technical/contracts)
-- [Integration Examples](/docs/technical/examples)
+- [API Documentation](/technical/api)
+- [SDK Reference](/technical/sdk)
+- [Smart Contract Guide](/technical/contracts)
+- [Integration Examples](/technical/examples)
 
 ### Tools & Libraries
 - **VEX SDK**: JavaScript/TypeScript library

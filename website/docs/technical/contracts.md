@@ -325,6 +325,6 @@ GovernanceDAO: be2us-64aaa-aaaaa-qaabq-cai
 ## Resources
 
 - [Contract Source Code](https://github.com/vex-network/contracts)
-- [Integration Examples](/docs/technical/examples)
+- [Integration Examples](/technical/examples)
 - [Motoko Documentation](https://internetcomputer.org/docs/current/motoko/main/motoko)
 - [ICP Developer Forum](https://forum.dfinity.org)

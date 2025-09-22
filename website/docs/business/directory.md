@@ -129,7 +129,7 @@ Ready to list your business?
 3. Collect initial reviews
 4. Get listed in directory
 
-[Apply Now →](/docs/business/getting-started)
+[Apply Now →](/business/getting-started)
 
 ## Report a Business
 

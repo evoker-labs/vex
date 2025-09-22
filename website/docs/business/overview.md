@@ -1,12 +1,13 @@
 ---
 sidebar_position: 1
+title: Business Overview
 ---
 
-# Business Overview
+# Business Solutions
 
-## Transform Customer Feedback into Trust
+## Transform Customer Feedback into Unshakeable Trust
 
-VEX empowers businesses to build unshakeable trust with their customers through blockchain-verified feedback and transparent reputation management.
+VEX empowers businesses to build lasting trust with their customers through blockchain-verified feedback and transparent reputation management. Join over 1,000+ businesses already building their immutable reputation on-chain.
 
 ## Why Choose VEX?
 
@@ -111,4 +112,4 @@ Complete solution for established businesses
 
 Ready to transform your customer relationships?
 
-[Start Free Trial →](/docs/business/getting-started)
+[Start Free Trial →](/business/getting-started)

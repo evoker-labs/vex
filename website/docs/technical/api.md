@@ -261,10 +261,10 @@ Configure webhooks to receive real-time updates:
 ## SDKs
 
 Official SDKs available for:
-- [JavaScript/TypeScript](/docs/technical/sdk#javascript)
-- [Python](/docs/technical/sdk#python)
-- [Go](/docs/technical/sdk#go)
-- [Ruby](/docs/technical/sdk#ruby)
+- [JavaScript/TypeScript](/technical/sdk#javascript)
+- [Python](/technical/sdk#python)
+- [Go](/technical/sdk#go)
+- [Ruby](/technical/sdk#ruby)
 
 ## Testing
 

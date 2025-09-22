@@ -144,4 +144,4 @@ Join the VEX community and get rewarded for providing honest feedback that helps
 
 Be part of the solution to online trust issues. Your voice matters, and with VEX, it's also valuable.
 
-[Create Account →](#) | [View Businesses →](/docs/business/directory)
+[Create Account →](#) | [View Businesses →](/business/directory)

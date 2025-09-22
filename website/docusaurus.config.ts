@@ -8,6 +8,9 @@ const config: Config = {
   title: 'VEX',
   tagline: 'Your Voice, Our Chain, Their Accountability',
   favicon: 'img/favicon.ico',
+  
+  // Docs-only mode
+  noIndex: false,
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -43,27 +46,14 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/', // Serve docs at the root
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/evoker-labs/vex/tree/main/website/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/evoker-labs/vex/tree/main/website/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false, // Disable blog
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -87,7 +77,6 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'pathname:///VEX-PITCH.pdf',
           label: 'Pitch Deck',
@@ -108,7 +97,7 @@ const config: Config = {
           items: [
             {
               label: 'Get Started',
-              to: '/docs/intro',
+              to: '/',
             },
           ],
         },
@@ -135,10 +124,6 @@ const config: Config = {
             {
               label: 'Pitch Deck',
               href: 'pathname:///VEX-PITCH.pdf',
-            },
-            {
-              label: 'Blog',
-              to: '/blog',
             },
             {
               label: 'GitHub',
