@@ -96,13 +96,27 @@ Our dual-token system ensures sustainability:
 - ✅ **60% retention rate** after 30 days
 - ✅ **5x ROI** for businesses using VEX Trust infrastructure
 
+## 🎥 Watch Our Pitch
+
+<div style={{marginTop: '2rem', marginBottom: '2rem'}}>
+  <iframe 
+    width="100%" 
+    height="400" 
+    src="https://www.youtube.com/embed/eZk0IM-Ftmo" 
+    title="VEX Pitch Video"
+    frameBorder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowFullScreen>
+  </iframe>
+</div>
+
 ## 🚀 Get Started
 
 <div style={{display: 'flex', gap: '1rem', marginTop: '2rem'}}>
   <a href="/business/getting-started" className="button button--primary button--lg">
     Start Free Trial →
   </a>
-  <a href="/VEX-PITCH.pdf" className="button button--secondary button--lg">
+  <a href="pathname:///VEX-PITCH.pdf" className="button button--secondary button--lg" target="_blank">
     📊 View Pitch Deck
   </a>
 </div>
