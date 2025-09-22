@@ -1,4 +1,4 @@
-![VEX Platform](docs/vex-banner.png)
+![VEX Platform](../docs/vex-banner.png)
 
 # VEX - Decentralized Business Review Platform
 
@@ -135,32 +135,6 @@ VEX provides a blockchain-based review system that guarantees:
 - User experience and interface design
 - Platform visual identity creation
 
-## Strategic Partners
-
-- Internet Computer Protocol
-- Plug Wallet
-- OpenChat
-- IAPP AI Governance Center
-- Blockchain for Good Alliance
-
-## Investment Opportunity
-
-VEX represents a unique opportunity to invest in the future of trust and transparency in digital commerce. With our blockchain-based solution, we're positioned to capture a significant share of the growing review platform market while providing real value to both businesses and consumers.
-
-### Why Invest in VEX?
-
-1. **Growing Market**: Trust crisis in digital commerce creates massive opportunity
-2. **Proven Technology**: Built on established Internet Computer Protocol
-3. **Revenue Model**: Multiple revenue streams with clear path to profitability
-4. **Experienced Team**: Combining technical expertise with business acumen
-5. **First Mover Advantage**: First decentralized review platform with token incentives
-
-## Contact
-
-- **Email**: team@vex.platform
-- **Website**: vex.platform
-- **LinkedIn**: VEX Platform
-- **Twitter**: @VexPlatform
 
 ## Technical Documentation
 
