@@ -35,6 +35,25 @@ jobs:
       - name: Build website
         run: npm run build
 
+      - name: Check if gh-pages branch exists
+        run: |
+          git ls-remote --exit-code --heads origin gh-pages || echo "CREATE_BRANCH=true" >> $GITHUB_ENV
+
+      - name: Create gh-pages branch if needed
+        if: env.CREATE_BRANCH == 'true'
+        run: |
+          cd ..
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan gh-pages
+          git reset --hard
+          echo "GitHub Pages branch initialized" > index.html
+          git add index.html
+          git commit -m "Initialize gh-pages branch"
+          git push origin gh-pages
+          git checkout main
+          cd website
+
       - name: Deploy to GitHub Pages
         run: |
           git config --global user.name "github-actions[bot]"
