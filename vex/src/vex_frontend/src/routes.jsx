@@ -202,6 +202,23 @@ const router = createBrowserRouter([
       {
         path: 'hello',
         element: <Hello />,
+      },
+      // VEX Review System Routes (also at root level)
+      {
+        path: 'client-dashboard',
+        element: <ClientDashboard />
+      },
+      {
+        path: 'business-dashboard', 
+        element: <BusinessDashboard />
+      },
+      {
+        path: 'submit-review',
+        element: <SubmitReview />
+      },
+      {
+        path: 'dao',
+        element: <DAOGovernance />
       }
     ]
   }

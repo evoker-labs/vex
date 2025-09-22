@@ -15,6 +15,19 @@ const Landing = () => {
   const [activeAccordion, setActiveAccordion] = useState(null);
   const [scrollY, setScrollY] = useState(0);
   
+  // Handle navigation for IC local development
+  const handleLaunchApp = (e) => {
+    e.preventDefault();
+    // Check if we're in IC local development
+    if (window.location.hostname.includes('.localhost') || window.location.hostname.includes('.local')) {
+      // Use window.location for IC local development
+      window.location.href = `${window.location.origin}/client-dashboard`;
+    } else {
+      // Use React Router for production
+      window.location.href = '/client-dashboard';
+    }
+  };
+  
   const heroRef = useRef(null);
   const competitorsRef = useRef(null);
   const isCompetitorsInView = useInView(competitorsRef, { once: true, threshold: 0.1 });
@@ -260,12 +273,12 @@ const Landing = () => {
               <a href="#dao" className="text-gray-700 hover:text-purple-600 font-medium transition">
                 DAO
               </a>
-              <Link 
-                to="/app/client-dashboard" 
+              <button 
+                onClick={handleLaunchApp}
                 className="ml-4 px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition font-medium"
               >
                 Launch App
-              </Link>
+              </button>
             </div>
 
             {/* Mobile menu button */}
@@ -298,9 +311,9 @@ const Landing = () => {
               <a href="#dao" className="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md">
                 DAO
               </a>
-              <Link to="/app/client-dashboard" className="block px-3 py-2 bg-purple-600 text-white rounded-md text-center">
+              <button onClick={handleLaunchApp} className="block w-full px-3 py-2 bg-purple-600 text-white rounded-md text-center">
                 Launch App
-              </Link>
+              </button>
             </div>
           </motion.div>
         )}
