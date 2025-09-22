@@ -1,68 +1,161 @@
-type Result = variant { Ok : Ticket; Err : text };
-type Result_1 = variant { Ok : User; Err : text };
-type Result_2 = variant { Ok; Err : text };
-type Result_3 = variant { Ok : vec TicketMessage; Err : text };
-type StatusCounts = record {
-  resolved : nat64;
-  closed : nat64;
-  in_progress : nat64;
-  open : nat64;
-  on_hold : nat64;
-};
-type Ticket = record {
+// Company Types
+type Company = record {
   id : nat64;
-  status : TicketStatus;
-  title : text;
-  updated_at : nat64;
-  messages : vec TicketMessage;
+  name : text;
   description : text;
+  website : text;
+  logo_url : text;
+  category : text;
+  verified : bool;
+  trust_score : float64;
+  total_reviews : nat64;
+  average_rating : float64;
   created_at : nat64;
-  created_by : nat64;
-  ticket_type : TicketType;
-  assignee_id : opt nat64;
-  priority : nat8;
-  resolved_at : opt nat64;
+  updated_at : nat64;
+  subscription_tier : SubscriptionTier;
 };
-type TicketMessage = record {
+
+type SubscriptionTier = variant { 
+  Basic; 
+  Standard; 
+  Enterprise 
+};
+
+// Review Types
+type Review = record {
   id : nat64;
-  content : text;
-  created_at : nat64;
+  company_id : nat64;
   user_id : nat64;
+  rating : nat8; // 1-5 stars
+  title : text;
+  content : text;
+  verified_purchase : bool;
+  helpful_count : nat64;
+  not_helpful_count : nat64;
+  created_at : nat64;
+  updated_at : nat64;
+  status : ReviewStatus;
 };
-type TicketStats = record {
-  total : nat64;
-  by_status : StatusCounts;
-  by_type : vec record { text; int32 };
-  avg_resolution_time_ns : nat64;
+
+type ReviewStatus = variant {
+  Pending;
+  Approved;
+  Rejected;
+  Flagged;
 };
-type TicketStatus = variant { OnHold; Open; Closed; InProgress; Resolved };
-type TicketType = variant { Bug; Support; Maintenance; Other; Feature };
+
+// User Types
 type User = record {
   id : nat64;
   name : text;
-  created_at : nat64;
   email : text;
+  avatar_url : text;
+  reputation_score : nat64;
+  total_reviews : nat64;
+  helpful_votes : nat64;
+  tokens_earned : nat64;
+  created_at : nat64;
+  verified : bool;
 };
+
+// Response to review
+type ReviewResponse = record {
+  id : nat64;
+  review_id : nat64;
+  company_id : nat64;
+  content : text;
+  created_at : nat64;
+};
+
+// Statistics
+type CompanyStats = record {
+  total_reviews : nat64;
+  average_rating : float64;
+  rating_distribution : vec nat64; // [1-star, 2-star, 3-star, 4-star, 5-star]
+  trust_score : float64;
+  response_rate : float64;
+  response_time_avg : nat64;
+};
+
+type PlatformStats = record {
+  total_companies : nat64;
+  total_users : nat64;
+  total_reviews : nat64;
+  total_tokens_distributed : nat64;
+  active_users_30d : nat64;
+};
+
+// Search and Filter
+type SearchFilters = record {
+  category : opt text;
+  min_rating : opt float64;
+  max_rating : opt float64;
+  verified_only : bool;
+  sort_by : SortOption;
+  limit : nat32;
+  offset : nat32;
+};
+
+type SortOption = variant {
+  Rating;
+  ReviewCount;
+  TrustScore;
+  Recent;
+  Name;
+};
+
+// Result types
+type Result = variant { Ok : Company; Err : text };
+type Result_1 = variant { Ok : Review; Err : text };
+type Result_2 = variant { Ok : User; Err : text };
+type Result_3 = variant { Ok; Err : text };
+type Result_4 = variant { Ok : vec Company; Err : text };
+type Result_5 = variant { Ok : vec Review; Err : text };
+type Result_6 = variant { Ok : CompanyStats; Err : text };
+type Result_7 = variant { Ok : nat64; Err : text };
+
 service : {
-  add_message_to_ticket : (nat64, nat64, text) -> (Result);
-  assign_ticket : (nat64, opt nat64) -> (Result);
-  create_ticket : (text, text, TicketType, nat64, nat8) -> (Result);
-  create_user : (text, text) -> (Result_1);
-  delete_ticket : (nat64) -> (Result_2);
-  delete_user : (nat64) -> (Result_2);
-  get_all_tickets : () -> (vec Ticket) query;
-  get_all_users : () -> (vec User) query;
-  get_ticket : (nat64) -> (opt Ticket) query;
-  get_ticket_messages : (nat64) -> (Result_3) query;
-  get_ticket_stats : () -> (TicketStats) query;
-  get_tickets_by_assignee : (nat64) -> (vec Ticket) query;
-  get_tickets_by_status : (TicketStatus) -> (vec Ticket) query;
-  get_tickets_by_type : (TicketType) -> (vec Ticket) query;
+  // Company Management
+  create_company : (text, text, text, text, text) -> (Result);
+  update_company : (nat64, opt text, opt text, opt text, opt text, opt text) -> (Result);
+  get_company : (nat64) -> (opt Company) query;
+  get_all_companies : () -> (vec Company) query;
+  search_companies : (SearchFilters) -> (Result_4) query;
+  verify_company : (nat64) -> (Result);
+  update_subscription : (nat64, SubscriptionTier) -> (Result);
+  
+  // Review Management
+  create_review : (nat64, nat64, nat8, text, text, bool) -> (Result_1);
+  update_review : (nat64, opt nat8, opt text, opt text) -> (Result_1);
+  delete_review : (nat64) -> (Result_3);
+  get_review : (nat64) -> (opt Review) query;
+  get_company_reviews : (nat64, nat32, nat32) -> (Result_5) query;
+  get_user_reviews : (nat64) -> (vec Review) query;
+  flag_review : (nat64, text) -> (Result_1);
+  approve_review : (nat64) -> (Result_1);
+  vote_helpful : (nat64, bool) -> (Result_1);
+  
+  // Company Response
+  respond_to_review : (nat64, nat64, text) -> (Result_3);
+  get_review_response : (nat64) -> (opt ReviewResponse) query;
+  
+  // User Management
+  create_user : (text, text) -> (Result_2);
+  update_user : (nat64, opt text, opt text, opt text) -> (Result_2);
   get_user : (nat64) -> (opt User) query;
+  get_all_users : () -> (vec User) query;
+  delete_user : (nat64) -> (Result_3);
+  verify_user : (nat64) -> (Result_2);
+  
+  // Token & Rewards
+  reward_user : (nat64, nat64) -> (Result_7);
+  get_user_tokens : (nat64) -> (nat64) query;
+  
+  // Statistics
+  get_company_stats : (nat64) -> (Result_6) query;
+  get_platform_stats : () -> (PlatformStats) query;
+  calculate_trust_score : (nat64) -> (float64) query;
+  
+  // Utils
   heart_beat : (text) -> (text) query;
-  update_ticket : (nat64, opt text, opt text, opt TicketType, opt nat8) -> (
-      Result,
-    );
-  update_ticket_status : (nat64, TicketStatus) -> (Result);
-  update_user : (nat64, opt text, opt text) -> (Result_1);
 }

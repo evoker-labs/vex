@@ -69,6 +69,50 @@ function Layout() {
                 <span className="nav-label">Users</span>
               </NavLink>
             </li>
+            {/* Review System Navigation */}
+            <li className="nav-section-divider">
+              <span className="nav-label">Reviews</span>
+            </li>
+            <li>
+              <NavLink to={`${basePrefix}/client-dashboard`} className={({ isActive }) => isActive ? 'active' : ''}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span className="nav-label">My Dashboard</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`${basePrefix}/submit-review`} className={({ isActive }) => isActive ? 'active' : ''}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span className="nav-label">Write Review</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`${basePrefix}/business-dashboard`} className={({ isActive }) => isActive ? 'active' : ''}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                <span className="nav-label">Business</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`${basePrefix}/dao`} className={({ isActive }) => isActive ? 'active' : ''}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.5V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span className="nav-label">DAO Vote</span>
+              </NavLink>
+            </li>
+            
+            {/* Legacy System Navigation */}
+            <li className="nav-section-divider">
+              <span className="nav-label">Legacy</span>
+            </li>
             <li>
               <NavLink to={`${basePrefix}/tickets`} className={({ isActive }) => isActive ? 'active' : ''}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

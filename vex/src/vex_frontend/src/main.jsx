@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Routes from './routes';
-import './index.scss';
-import './styles'; // Import all styles from the index file
+import './index.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
+
+const queryClient = new QueryClient();
 
 // Function to handle errors during rendering
 const renderApp = () => {
@@ -18,7 +21,19 @@ const renderApp = () => {
     
     root.render(
       <React.StrictMode>
-        <Routes />
+        <QueryClientProvider client={queryClient}>
+          <Routes />
+          <Toaster 
+            position="top-center"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#363636',
+                color: '#fff',
+              },
+            }}
+          />
+        </QueryClientProvider>
       </React.StrictMode>
     );
     

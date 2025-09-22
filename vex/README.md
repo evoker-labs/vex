@@ -1,61 +1,151 @@
-# `vex`
+![VEX Platform](../docs/vex-banner.png)
 
-Welcome to your new `vex` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+# VEX - Decentralized Business Review Platform
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+**Your Voice, Our Chain, Their Accountability**
 
-To learn more before you start working with `vex`, see the following documentation available online:
+## Overview
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Rust Canister Development Guide](https://internetcomputer.org/docs/current/developer-docs/backend/rust/)
-- [ic-cdk](https://docs.rs/ic-cdk)
-- [ic-cdk-macros](https://docs.rs/ic-cdk-macros)
-- [Candid Introduction](https://internetcomputer.org/docs/current/developer-docs/backend/candid/)
+VEX is a revolutionary decentralized platform that connects companies to the blockchain ecosystem, enabling transparent business registration and community evaluation through verified customer feedback. Built on the Internet Computer Protocol (ICP), VEX addresses the critical trust gap in online business reviews.
 
-If you want to start working on your project right away, you might want to try the following commands:
+## Problem
 
-```bash
-cd vex/
-dfx help
-dfx canister --help
-```
+- **61% of consumers** experience unreliable apps/websites weekly
+- **44% of consumers** stop buying from companies due to lack of trust
+- Traditional review platforms suffer from fake reviews and manipulation
+- Businesses struggle with fragile code and fraud risks in the AI era
 
-## Running the project locally
+## Solution
 
-If you want to test your project locally, you can use the following commands:
+VEX provides a blockchain-based review system that guarantees:
+- **Immutable Reviews**: Every review is permanently stored on-chain
+- **Verified Authenticity**: Real purchases verified through TLSN technology
+- **Token Incentives**: Reviewers earn rewards for valuable feedback
+- **Community Governance**: Platform decisions made by users through DAO
 
-```bash
-# Starts the replica, running in the background
-dfx start --background
+## Market Opportunity
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
-```
+- **$2.53 billion** Internet Computer market capitalization
+- **61%** of consumers need reliable review platforms
+- **44%** of consumers have stopped buying due to trust issues
+- **5%** expected freemium to paid conversion rate
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+## Business Model
 
-If you have made changes to your backend canister, you can generate a new candid interface with
+### Revenue Streams
 
-```bash
-npm run generate
-```
+1. **SaaS Subscriptions**: Monthly fees for businesses accessing advanced features
+2. **Token Economics**: Value appreciation through network growth
+3. **Premium Services**: Enterprise integrations and custom solutions
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
+### Pricing Tiers
 
-If you are making frontend changes, you can start a development server with
+| Plan | Price | Features |
+|------|-------|----------|
+| **Basic** | Free | Business registration, receive feedback, basic trust score |
+| **Professional** | $288/month | Advanced analytics, VEX Trust Badge, API access, priority support |
+| **Enterprise** | $380/month | Dedicated support, CS data insights, custom integrations |
 
-```bash
-npm start
-```
+### Token Distribution
 
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
+- **40%** Community Rewards
+- **20%** DAO Treasury  
+- **15%** Development
+- **15%** Team (vested)
+- **10%** Marketing
 
-### Note on frontend environment variables
+## Competitive Advantage
 
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
+| Feature | VEX | TrustPilot | ReclameAqui | Feefo |
+|---------|-----|------------|-------------|--------|
+| Blockchain Verified | Yes | No | No | No |
+| Decentralized | Yes | No | No | No |
+| Token Rewards | Yes | No | No | No |
+| DAO Governance | Yes | No | No | No |
+| TLSN Verification | Yes | No | No | No |
+| Immutable Reviews | Yes | No | No | No |
+| Community Driven | Yes | No | Partial | No |
+| Cost Effective | Yes | No | Yes | No |
 
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+## Key Differentiators
+
+1. **Reward System**: Users earn tokens for providing valuable feedback
+2. **Community Validation**: The community itself validates and guarantees trust
+3. **Lower Costs**: Simple, fast transactions at lower cost than competitors
+4. **True Transparency**: All data publicly verifiable on blockchain
+
+## Target Market
+
+### Primary Customers
+- **Startups and SMEs**: Growing companies facing difficulties structuring customer feedback
+- **Digital Businesses**: E-commerce, SaaS, and online service providers
+- **Web3 Companies**: Blockchain-native businesses seeking decentralized solutions
+
+### Secondary Market
+- **Reviewers**: Digital professionals and consumers aged 18-40
+- **Token Holders**: Investors interested in governance participation
+- **Enterprise Clients**: Large organizations requiring custom trust solutions
+
+## Roadmap
+
+### Q1 2025 - Foundation
+- MVP launch with core features
+- Initial business onboarding
+- Community building
+
+### Q2 2025 - Growth
+- Platform refinement based on feedback
+- Marketing campaign launch
+- Strategic partnerships
+
+### Q3 2025 - Expansion
+- Scale infrastructure
+- International market entry
+- Enterprise features
+
+### Q4 2025 - Maturity
+- Full DAO implementation
+- Cross-chain integration
+- Global presence
+
+## Traction & Metrics
+
+- **70%** of prototype users report increased confidence
+- **60%+** user engagement rate in initial testing
+- **5%** conversion rate from free to paid expected
+- Multiple strategic partnerships in development
+
+## Team
+
+**Rafael Coutinho** - Founder & Engineer
+- Full-stack developer with blockchain expertise
+- Previous experience in decentralized systems
+
+**Davi Arantes** - Business & Engineer
+- Business strategy and technical implementation
+- Software engineering background
+
+**Anna Aragão** - Business & Sales
+- McKinsey Forward Program 2025 Graduate
+- TOP 50 Global Student Prize recipient
+- 1st Place COMEX Challenge winner
+- ABStartups Brazil Startup Mentor
+
+**Sarah** - UI/UX Designer
+- User experience and interface design
+- Platform visual identity creation
+
+
+## Technical Documentation
+
+For technical implementation details, please refer to:
+- [Technical Documentation](docs/TECHNICAL.md)
+- [API Reference](docs/API.md)
+- [Smart Contracts](docs/CONTRACTS.md)
+- [Development Guide](docs/DEVELOPMENT.md)
+
+---
+
+**VEX - Building Trust in the Digital Economy**
+
+*WCHL 2025 Hackathon Participant | Built on Internet Computer Protocol*
