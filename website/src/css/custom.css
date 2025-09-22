@@ -1,0 +1,144 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #667eea;
+  --ifm-color-primary-dark: #4c63e6;
+  --ifm-color-primary-darker: #3f57e4;
+  --ifm-color-primary-darkest: #2039ce;
+  --ifm-color-primary-light: #8099ee;
+  --ifm-color-primary-lighter: #8da4f0;
+  --ifm-color-primary-lightest: #adbff5;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  
+  /* VEX Custom Colors */
+  --vex-purple: #764ba2;
+  --vex-purple-dark: #5d3a80;
+  --vex-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --vex-gradient-light: linear-gradient(135deg, #8099ee 0%, #9770c4 100%);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #8099ee;
+  --ifm-color-primary-dark: #5e7fe8;
+  --ifm-color-primary-darker: #4d71e5;
+  --ifm-color-primary-darkest: #2953dc;
+  --ifm-color-primary-light: #a2b5f4;
+  --ifm-color-primary-lighter: #b3c3f7;
+  --ifm-color-primary-lightest: #e6ebfd;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  
+  /* VEX Custom Colors Dark */
+  --vex-purple: #9770c4;
+  --vex-purple-dark: #764ba2;
+  --vex-gradient: linear-gradient(135deg, #8099ee 0%, #9770c4 100%);
+  --vex-gradient-light: linear-gradient(135deg, #a2b5f4 0%, #b994d6 100%);
+}
+
+/* Custom Hero Styles */
+.hero {
+  background: var(--vex-gradient);
+  color: white;
+}
+
+.hero__title {
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(to right, #fff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  opacity: 0.95;
+}
+
+/* Custom Button Styles */
+.button--outline.button--secondary {
+  color: white;
+  border-color: white;
+}
+
+.button--outline.button--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  color: white;
+}
+
+/* Navbar Customization */
+.navbar {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navbar__title {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* Footer Enhancement */
+.footer {
+  background: linear-gradient(180deg, var(--ifm-background-surface-color) 0%, rgba(102, 126, 234, 0.05) 100%);
+}
+
+.footer--dark {
+  background: linear-gradient(180deg, var(--ifm-background-surface-color) 0%, rgba(102, 126, 234, 0.1) 100%);
+}
+
+/* Card Styles */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Code Block Enhancement */
+.theme-code-block {
+  border-radius: 8px;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--vex-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section Spacing */
+section {
+  padding: 4rem 0;
+}
+
+/* Responsive Design Improvements */
+@media screen and (max-width: 996px) {
+  .hero__title {
+    font-size: 3rem;
+  }
+  
+  .hero__subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hero__title {
+    font-size: 2.5rem;
+  }
+  
+  .hero__subtitle {
+    font-size: 1.1rem;
+  }
+}
