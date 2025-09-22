@@ -49,11 +49,11 @@ struct User {
 }
 
 impl Storable for User {
-    fn to_bytes(&self) -> Cow<[u8]> {
+    fn to_bytes(&self) -> Cow<'_, [u8]> {
         Cow::Owned(candid::encode_one(self).unwrap())
     }
 
-    fn from_bytes(bytes: Cow<[u8]>) -> Self {
+    fn from_bytes(bytes: Cow<'_, [u8]>) -> Self {
         candid::decode_one(&bytes).unwrap()
     }
 
@@ -106,11 +106,11 @@ struct Ticket {
 }
 
 impl Storable for Ticket {
-    fn to_bytes(&self) -> Cow<[u8]> {
+    fn to_bytes(&self) -> Cow<'_, [u8]> {
         Cow::Owned(candid::encode_one(self).unwrap())
     }
 
-    fn from_bytes(bytes: Cow<[u8]>) -> Self {
+    fn from_bytes(bytes: Cow<'_, [u8]>) -> Self {
         candid::decode_one(&bytes).unwrap()
     }
 
