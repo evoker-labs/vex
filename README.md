@@ -1,6 +1,7 @@
 # VEX - Decentralized Business Review Platform
-
 **Your Voice, Our Chain, Their Accountability**
+
+![VEX Platform](./docs/banner.png)
 
 ## Overview
 
@@ -86,31 +87,18 @@ VEX provides a blockchain-based review system that guarantees:
 
 ## Roadmap
 
-### Q1 - Foundation
-- MVP launch with core features
-- Initial business onboarding
-- Community building
-
-### Q2 - Growth
-- Platform refinement based on feedback
-- Marketing campaign launch
-- Strategic partnerships
-
-### Q3 - Expansion
-- Scale infrastructure
-- International market entry
-- Enterprise features
-
-### Q4 - Maturity
-- Full DAO implementation
-- Cross-chain integration
-- Global presence
+| Quarter | Focus       | Key Milestones                                                                 |
+|---------|-------------|--------------------------------------------------------------------------------|
+| **Q1**  | Foundation  | - MVP launch with core features<br>- Initial business onboarding<br>- Community building |
+| **Q2**  | Growth      | - Platform refinement based on feedback<br>- Marketing campaign launch<br>- Strategic partnerships |
+| **Q3**  | Expansion   | - Scale infrastructure<br>- International market entry<br>- Enterprise features |
+| **Q4**  | Maturity    | - Full DAO implementation<br>- Cross-chain integration<br>- Global presence |
 
 ## Team
 
-**Rafael Coutinho** - Founder & Engineer
-**Davi Arantes** - Design & Engineer
-**Anna Aragão** - Business & Sales
+* **Rafael Coutinho** - Founder & Engineer
+* **Davi Arantes** - Design & Engineer
+* **Anna Aragão** - Business & Sales
 
 ## Technical Documentation
 
