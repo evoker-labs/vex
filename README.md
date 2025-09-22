@@ -1,80 +1,122 @@
-# VEX - Internet Computer Support & Ticketing System
+# VEX - Decentralized Business Review Platform
 
-VEX is a powerful library and API designed to seamlessly integrate support and ticketing systems with Internet Computer Protocol (ICP) dapps and traditional Web2 applications.
+**Your Voice, Our Chain, Their Accountability**
 
-[PITCH DECK](https://www.canva.com/design/DAGqXkgdhbI/jG5JkgOkUZt1dUG3mCa_pQ/edit)
+## Overview
 
-## Features
+VEX is a revolutionary decentralized platform that connects companies to the blockchain ecosystem, enabling transparent business registration and community evaluation through verified customer feedback. Built on the Internet Computer Protocol (ICP), VEX addresses the critical trust gap in online business reviews.
 
-- Complete ticketing system with user management
-- Seamless integration with both ICP dapps and traditional web applications
-- Secure, decentralized storage of support data
-- Customizable workflows for ticket resolution
-- Real-time updates and notifications
+## Problem
 
-## Quick Setup
+- **61% of consumers** experience unreliable apps/websites weekly
+- **44% of consumers** stop buying from companies due to lack of trust
+- Traditional review platforms suffer from fake reviews and manipulation
+- Businesses struggle with fragile code and fraud risks in the AI era
 
-### Prerequisites
+## Solution
 
-```bash
-# Using DFX directly
-sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
+VEX provides a blockchain-based review system that guarantees:
+- **Immutable Reviews**: Every review is permanently stored on-chain
+- **Verified Authenticity**: Real purchases verified through TLSN technology
+- **Token Incentives**: Reviewers earn rewards for valuable feedback
+- **Community Governance**: Platform decisions made by users through DAO
 
-# Or using Nix
-nix-shell https://github.com/ninegua/ic-nix/releases/latest/download/dfx-env.tar.gz
+## Market Opportunity
 
-# Install LLVM linker
-nix shell nixpkgs#lld
+- **$2.53 billion** Internet Computer market capitalization
+- **61%** of consumers need reliable review platforms
+- **44%** of consumers have stopped buying due to trust issues
+- **5%** expected freemium to paid conversion rate
 
-# Install Candid extractor
-cargo install candid-extractor
-```
+## Business Model
 
-### Local Development
+### Revenue Streams
 
-```bash
-# Clone the repository
-git clone https://github.com/love4game/vex.git
-cd vex
+1. **SaaS Subscriptions**: Monthly fees for businesses accessing advanced features
+2. **Token Economics**: Value appreciation through network growth
+3. **Premium Services**: Enterprise integrations and custom solutions
 
-# Start the local replica
-dfx start --background --clean
-cd vex
+### Pricing Tiers
 
-# Deploy the backend canister
-dfx deploy vex_backend
+| Plan | Price | Features |
+|------|-------|----------|
+| **Basic** | Free | Business registration, receive feedback, basic trust score |
+| **Professional** | $363/month | Advanced analytics, VEX Trust Badge, API access, priority support |
+| **Enterprise** | $custom/month | Dedicated support, CS data insights, custom integrations |
 
-# Deploy the frontend assets
-dfx deploy vex_frontend
-```
+### Token Distribution (Tokenomics)
 
-## Documentation
+- **40%** Community Rewards
+- **20%** DAO Treasury  
+- **15%** Development
+- **15%** Team (vested)
+- **10%** Marketing
 
-Comprehensive documentation is available in the `/docs` directory:
+## Competitive Advantage
 
-- Business Overview
-- Getting Started
-- Integration Guides
-- API Reference
-- Examples
+| Feature | VEX | TrustPilot | ReclameAqui | Feefo |
+|---------|-----|------------|-------------|--------|
+| Blockchain Verified | Yes | No | No | No |
+| Decentralized | Yes | No | No | No |
+| Token Rewards | Yes | No | No | No |
+| DAO Governance | Yes | No | No | No |
+| TLSN Verification | Yes | No | No | No |
+| Immutable Reviews | Yes | No | No | No |
+| Community Driven | Yes | No | Partial | No |
+| Cost Effective | Yes | No | Yes | No |
 
-To build and view the documentation:
+## Key Differentiators
 
-```bash
-cd docs
-mdbook build
-mdbook serve --open
-```
+1. **Reward System**: Users earn tokens for providing valuable feedback
+2. **Community Validation**: The community itself validates and guarantees trust
+3. **Lower Costs**: Simple, fast transactions at lower cost than competitors
+4. **True Transparency**: All data publicly verifiable on blockchain
 
-## Integration
+## Target Market
 
-VEX can be integrated with:
+### Primary Customers
+- **Startups and SMEs**: Growing companies facing difficulties structuring customer feedback
+- **Digital Businesses**: E-commerce, SaaS, and online service providers
+- **Web3 Companies**: Blockchain-native businesses seeking decentralized solutions
 
-- Internet Computer dapps
-- Traditional web applications
-- Mobile applications via web views
-- Custom interfaces through the API
+### Secondary Market
+- **Reviewers**: Digital professionals and consumers aged 18-40
+- **Token Holders**: Investors interested in governance participation
+- **Enterprise Clients**: Large organizations requiring custom trust solutions
 
-## License
+## Roadmap
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Q1 - Foundation
+- MVP launch with core features
+- Initial business onboarding
+- Community building
+
+### Q2 - Growth
+- Platform refinement based on feedback
+- Marketing campaign launch
+- Strategic partnerships
+
+### Q3 - Expansion
+- Scale infrastructure
+- International market entry
+- Enterprise features
+
+### Q4 - Maturity
+- Full DAO implementation
+- Cross-chain integration
+- Global presence
+
+## Team
+
+**Rafael Coutinho** - Founder & Engineer
+**Davi Arantes** - Design & Engineer
+**Anna Aragão** - Business & Sales
+
+## Technical Documentation
+
+For technical implementation details, please refer to:
+- [Technical Documentation](docs/TECHNICAL.md)
+
+**VEX - Building Trust in the Digital Economy**
+
+*WCHL 2025 Hackathon Participant | Built on Internet Computer Protocol*
