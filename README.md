@@ -1,6 +1,6 @@
 # VEX - Decentralized Business Review Platform
 
-![VEX Platform](./docs/banner.png)
+![VEX Platform](./assets/banner.png)
 
 ## Overview
 
@@ -99,11 +99,6 @@ VEX provides a blockchain-based review system that guarantees:
 * **Rafael Coutinho** - Founder & Engineer
 * **Davi Arantes** - Design & Engineer
 * **Anna Aragão** - Business & Sales
-
-## Technical Documentation
-
-For technical implementation details, please refer to:
-- [Technical Documentation](docs/TECHNICAL.md)
 
 **VEX - Building Trust in the Digital Economy**
 
