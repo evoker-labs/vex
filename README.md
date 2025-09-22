@@ -36,6 +36,7 @@ VEX provides a blockchain-based review system that guarantees:
 2. **Token Economics**: Value appreciation through network growth
 3. **Premium Services**: Enterprise integrations and custom solutions
 
+
 ### Pricing Tiers
 
 | Plan | Price | Features |
