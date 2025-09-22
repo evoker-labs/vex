@@ -77,7 +77,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: '/VEX-PITCH.pdf',
+          href: 'pathname:///VEX-PITCH.pdf',
           label: 'Pitch Deck',
           position: 'right',
         },
@@ -122,7 +122,7 @@ const config: Config = {
           items: [
             {
               label: 'Pitch Deck',
-              href: '/VEX-PITCH.pdf',
+              href: 'pathname:///VEX-PITCH.pdf',
             },
             {
               label: 'GitHub',
