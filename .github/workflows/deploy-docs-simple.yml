@@ -1,4 +1,4 @@
-name: Build Docusaurus Site
+name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
@@ -7,6 +7,15 @@ on:
       - 'website/**'
       - '.github/workflows/deploy-docs-simple.yml'
   workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -56,6 +65,14 @@ jobs:
         if: steps.check-build.outputs.build_needed == 'true'
         run: npm ci
 
+      - name: Restore cached build if exists
+        if: steps.check-build.outputs.build_needed == 'false'
+        uses: actions/cache/restore@v4
+        with:
+          path: website/build
+          key: website-build-output-${{ steps.hash.outputs.website_hash }}
+          fail-on-cache-miss: false
+
       - name: Build website
         if: steps.check-build.outputs.build_needed == 'true'
         run: npm run build
@@ -72,9 +89,25 @@ jobs:
           path: website/.build-hash
           key: website-build-${{ steps.hash.outputs.website_hash }}
 
-      - name: Upload build artifacts
+      - name: Cache build output
         if: steps.check-build.outputs.build_needed == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/cache/save@v4
         with:
-          name: docusaurus-build
           path: website/build
+          key: website-build-output-${{ steps.hash.outputs.website_hash }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/build
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
