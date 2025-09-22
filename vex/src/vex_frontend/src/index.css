@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-gray-900 text-white;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-vex-600 to-vex-400 bg-clip-text text-transparent;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/10 border border-white/20;
+  }
+
+  .dark-glass {
+    @apply backdrop-blur-lg bg-gray-900/50 border border-gray-800/50;
+  }
+
+  .vex-shadow {
+    box-shadow: 0 10px 40px -10px rgba(132, 61, 255, 0.35);
+  }
+
+  .vex-glow {
+    box-shadow: 0 0 40px rgba(132, 61, 255, 0.3);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-vex-600 text-white rounded-lg font-semibold hover:bg-vex-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-vex-600 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-300 border border-gray-200;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 bg-transparent text-vex-600 rounded-lg font-semibold hover:bg-vex-50 transition-all duration-300 border-2 border-vex-600;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-lg p-6 border border-gray-100;
+  }
+
+  .card-dark {
+    @apply bg-dark-200 rounded-2xl shadow-xl p-6 border border-dark-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-vex-500 focus:ring-2 focus:ring-vex-500/20 transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .rating-star {
+    @apply text-yellow-400 w-5 h-5 fill-current;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-vex-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-vex-600;
+}
+
+/* Loading animation */
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #843dff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Gradient background animation */
+.animated-gradient {
+  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
