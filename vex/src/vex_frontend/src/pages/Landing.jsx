@@ -261,7 +261,7 @@ const Landing = () => {
                 DAO
               </a>
               <Link 
-                to="/dashboard" 
+                to="/app/client-dashboard" 
                 className="ml-4 px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition font-medium"
               >
                 Launch App
@@ -298,7 +298,7 @@ const Landing = () => {
               <a href="#dao" className="block px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md">
                 DAO
               </a>
-              <Link to="/dashboard" className="block px-3 py-2 bg-purple-600 text-white rounded-md text-center">
+              <Link to="/app/client-dashboard" className="block px-3 py-2 bg-purple-600 text-white rounded-md text-center">
                 Launch App
               </Link>
             </div>

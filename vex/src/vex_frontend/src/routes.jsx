@@ -13,6 +13,12 @@ import Layout from './components/Layout';
 import Landing from './pages/Landing';
 import ErrorBoundary from './components/ErrorBoundary';
 
+// New VEX Review System Components
+import ClientDashboard from './pages/ClientDashboard';
+import BusinessDashboard from './pages/BusinessDashboard';
+import SubmitReview from './pages/SubmitReview';
+import DAOGovernance from './pages/DAOGovernance';
+
 // Error Boundary component for routes
 function RouteErrorBoundary() {
   const error = useRouteError();
@@ -133,6 +139,23 @@ const router = createBrowserRouter([
             <p>Explore the VEX API for custom integrations and extensions.</p>
           </div>
         </div>
+      },
+      // New VEX Review System Routes
+      {
+        path: 'client-dashboard',
+        element: <ClientDashboard />
+      },
+      {
+        path: 'business-dashboard', 
+        element: <BusinessDashboard />
+      },
+      {
+        path: 'submit-review',
+        element: <SubmitReview />
+      },
+      {
+        path: 'dao',
+        element: <DAOGovernance />
       }
     ]
   },
