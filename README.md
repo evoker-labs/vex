@@ -1,5 +1,4 @@
 # VEX - Decentralized Business Review Platform
-**Your Voice, Our Chain, Their Accountability**
 
 ![VEX Platform](./docs/banner.png)
 
