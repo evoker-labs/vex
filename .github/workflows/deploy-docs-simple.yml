@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (Simple)
+name: Build Docusaurus Site
 
 on:
   push:
@@ -8,20 +8,15 @@ on:
       - '.github/workflows/deploy-docs-simple.yml'
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  deploy:
-    name: Deploy to GitHub Pages
+  build:
+    name: Build Docusaurus
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: website
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -35,30 +30,8 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Check if gh-pages branch exists
-        run: |
-          git ls-remote --exit-code --heads origin gh-pages || echo "CREATE_BRANCH=true" >> $GITHUB_ENV
-
-      - name: Create gh-pages branch if needed
-        if: env.CREATE_BRANCH == 'true'
-        run: |
-          cd ..
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout --orphan gh-pages
-          git reset --hard
-          echo "GitHub Pages branch initialized" > index.html
-          git add index.html
-          git commit -m "Initialize gh-pages branch"
-          git push origin gh-pages
-          git checkout main
-          cd website
-
-      - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          npm run deploy
-        env:
-          GIT_USER: github-actions[bot]
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: docusaurus-build
+          path: website/build
