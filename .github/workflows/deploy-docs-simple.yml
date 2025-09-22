@@ -18,19 +18,62 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Calculate website content hash
+        id: hash
+        run: |
+          # Calculate hash of all website source files (excluding node_modules and build)
+          WEBSITE_HASH=$(find . -type f \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" -o -name "*.md" -o -name "*.mdx" -o -name "*.css" -o -name "*.json" \) ! -path "./node_modules/*" ! -path "./build/*" ! -path "./.docusaurus/*" -exec sha256sum {} \; | sort | sha256sum | cut -d' ' -f1)
+          echo "website_hash=$WEBSITE_HASH" >> $GITHUB_OUTPUT
+          echo "Website content hash: $WEBSITE_HASH"
+
+      - name: Cache check
+        id: cache-check
+        uses: actions/cache@v4
+        with:
+          path: website/.build-hash
+          key: website-build-${{ steps.hash.outputs.website_hash }}
+          lookup-only: true
+
+      - name: Check if build needed
+        id: check-build
+        run: |
+          if [[ "${{ steps.cache-check.outputs.cache-hit }}" == "true" ]]; then
+            echo "No changes detected in website content (hash: ${{ steps.hash.outputs.website_hash }})"
+            echo "build_needed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected, build needed"
+            echo "build_needed=true" >> $GITHUB_OUTPUT
+          fi
+
       - uses: actions/setup-node@v4
+        if: steps.check-build.outputs.build_needed == 'true'
         with:
           node-version: 20
           cache: npm
           cache-dependency-path: website/package-lock.json
 
       - name: Install dependencies
+        if: steps.check-build.outputs.build_needed == 'true'
         run: npm ci
 
       - name: Build website
+        if: steps.check-build.outputs.build_needed == 'true'
         run: npm run build
 
+      - name: Save build hash
+        if: steps.check-build.outputs.build_needed == 'true'
+        run: |
+          echo "${{ steps.hash.outputs.website_hash }}" > .build-hash
+          
+      - name: Cache build hash
+        if: steps.check-build.outputs.build_needed == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: website/.build-hash
+          key: website-build-${{ steps.hash.outputs.website_hash }}
+
       - name: Upload build artifacts
+        if: steps.check-build.outputs.build_needed == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: docusaurus-build
